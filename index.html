@@ -343,124 +343,6 @@
     100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
   }
 
-  /* === TEASER / PHONE SCREEN === */
-  .teaser-screen {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 150;
-    background: linear-gradient(135deg, #fff0f3 0%, #ffe0e6 50%, #ffd6e0 100%);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-  }
-
-  .teaser-screen.active {
-    display: flex;
-    animation: celebFadeIn 0.8s ease;
-  }
-
-  .teaser-card {
-    background: white;
-    border-radius: 2rem;
-    padding: 2.5rem 2rem;
-    max-width: 380px;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 8px 40px rgba(232, 69, 107, 0.15);
-    border: 2px solid rgba(232, 69, 107, 0.1);
-    animation: celebBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both 0.2s;
-    opacity: 0;
-  }
-
-  .teaser-emoji {
-    font-size: 2.5rem;
-    margin-bottom: 0.8rem;
-    animation: celebBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both 0.3s;
-    opacity: 0;
-  }
-
-  .teaser-title {
-    font-family: 'Caveat', cursive;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--rose);
-    margin-bottom: 0.4rem;
-    animation: celebBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both 0.4s;
-    opacity: 0;
-  }
-
-  .teaser-sub {
-    font-family: 'Quicksand', sans-serif;
-    font-size: 1rem;
-    color: var(--rose-deep);
-    font-weight: 600;
-    margin-bottom: 1.5rem;
-    animation: celebBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both 0.5s;
-    opacity: 0;
-  }
-
-  .phone-input-group {
-    animation: celebBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both 0.6s;
-    opacity: 0;
-    margin-bottom: 1rem;
-  }
-
-  .phone-input {
-    width: 100%;
-    padding: 0.85rem 1.2rem;
-    border: 2px solid rgba(232, 69, 107, 0.2);
-    border-radius: 14px;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--rose-deep);
-    background: var(--blush);
-    outline: none;
-    text-align: center;
-    transition: border-color 0.3s ease;
-    -webkit-appearance: none;
-  }
-
-  .phone-input:focus {
-    border-color: var(--rose);
-  }
-
-  .phone-input::placeholder {
-    color: rgba(199, 53, 88, 0.4);
-    font-weight: 500;
-  }
-
-  .btn-reveal {
-    background: linear-gradient(135deg, var(--rose), var(--pink-hot));
-    color: white;
-    border: none;
-    border-radius: 999px;
-    padding: 0.85rem 2.2rem;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 1.05rem;
-    font-weight: 700;
-    cursor: pointer;
-    animation: celebBounce 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) both 0.7s;
-    opacity: 0;
-    box-shadow: 0 4px 16px rgba(232, 69, 107, 0.35);
-    transition: transform 0.2s ease;
-  }
-
-  .btn-reveal:hover {
-    transform: scale(1.05);
-  }
-
-  .phone-sent-msg {
-    display: none;
-    font-family: 'Quicksand', sans-serif;
-    font-size: 0.85rem;
-    color: var(--rose);
-    font-weight: 600;
-    margin-top: 0.8rem;
-  }
-
   /* === DINNER REVEAL === */
   .dinner-reveal {
     display: none;
@@ -603,20 +485,6 @@
   <img class="celeb-gif" src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2k4ZzFxbDBneWVvZXNvYXlxbno0a2J1b3hsMW5iMHVsa2o4dTFmZiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/XjxFpkbJaLGpPTwnl4/giphy.gif" alt="Funny dog meme">
   <div class="celeb-text">I KNEW IT 😏💕</div>
   <div class="celeb-sub">you never had a choice 😏</div>
-</div>
-
-<!-- Teaser / Phone screen -->
-<div class="teaser-screen" id="teaserScreen">
-  <div class="teaser-card">
-    <div class="teaser-emoji">👀✨</div>
-    <div class="teaser-title">see what I have planned...</div>
-    <div class="teaser-sub">drop your number and I'll send you the details 😏</div>
-    <div class="phone-input-group">
-      <input type="tel" class="phone-input" id="phoneInput" placeholder="(555) 123-4567" maxlength="14">
-    </div>
-    <button class="btn-reveal" id="btnReveal" onclick="revealDinner()">Show me! 💕</button>
-    <div class="phone-sent-msg" id="phoneSentMsg">✓ saved! now check this out...</div>
-  </div>
 </div>
 
 <!-- Dinner reveal -->
@@ -773,11 +641,12 @@
     // continuous heart rain
     startHeartRain();
 
-    // show teaser screen after 3.5 seconds
+    // show dinner reveal after 3.5 seconds
     setTimeout(() => {
       celeb.classList.remove('active');
       celeb.style.display = 'none';
-      document.getElementById('teaserScreen').classList.add('active');
+      document.getElementById('dinnerReveal').classList.add('active');
+      createHeartBurst();
     }, 3500);
   }
 
@@ -841,46 +710,6 @@
     setInterval(dropHeart, 200);
   }
 
-  // ===== Phone input formatting =====
-  const phoneInput = document.getElementById('phoneInput');
-  phoneInput.addEventListener('input', (e) => {
-    let val = e.target.value.replace(/\D/g, '');
-    if (val.length > 10) val = val.slice(0, 10);
-    if (val.length >= 7) {
-      val = `(${val.slice(0,3)}) ${val.slice(3,6)}-${val.slice(6)}`;
-    } else if (val.length >= 4) {
-      val = `(${val.slice(0,3)}) ${val.slice(3)}`;
-    } else if (val.length >= 1) {
-      val = `(${val}`;
-    }
-    e.target.value = val;
-  });
-
-  // ===== Reveal dinner =====
-  function revealDinner() {
-    const phone = phoneInput.value.replace(/\D/g, '');
-    if (phone.length < 10) {
-      phoneInput.style.borderColor = '#e8456b';
-      phoneInput.style.animation = 'cardShake 0.4s ease';
-      setTimeout(() => {
-        phoneInput.style.animation = '';
-      }, 400);
-      return;
-    }
-
-    // show "saved" message
-    document.getElementById('phoneSentMsg').style.display = 'block';
-    document.getElementById('btnReveal').textContent = '💕';
-    document.getElementById('btnReveal').disabled = true;
-
-    // transition to dinner reveal after 1.5s
-    setTimeout(() => {
-      document.getElementById('teaserScreen').classList.remove('active');
-      document.getElementById('teaserScreen').style.display = 'none';
-      document.getElementById('dinnerReveal').classList.add('active');
-      createHeartBurst();
-    }, 1500);
-  }
 </script>
 </body>
 </html>
